@@ -1,0 +1,2395 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms"
+        xmlns:h="http://www.w3.org/1999/xhtml"
+        xmlns:ev="http://www.w3.org/2001/xml-events"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:jr="http://openrosa.org/javarosa"
+        >
+
+  <!-- NOTE: branching convention is as follows:-->
+  <!-- B1 = "currently on a Muni trip"-->
+  <!-- B2 = "most recent trip was on Muni"-->
+  <!-- B3 = "most trip was by car."-->
+  <!-- B4 = "most trip was by bike."-->
+
+  <h:head>
+    <h:title>AllModes_1_3</h:title>
+    <model>
+
+      <!-- create iText element for each image -->
+      <itext>
+        <translation default="English" lang="English">
+
+          <!-- define handles for image-labels for emotions and satisfaction criteria -->
+          <text id="pleased"> <!-- this is the handle image-label -->
+            <value form="long">C1</value>
+            <value form="short">C1</value>
+            <value form="image">jr://images/Pleased.png</value>
+          </text>    
+          <text id="frustrated">
+            <value form="long">C2</value>
+            <value form="short">C2</value>
+            <value form="image">jr://images/Frustrated.png</value>
+          </text>
+          <text id="peaceful">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Peaceful.png</value>
+          </text>
+          <text id="impatient">
+            <value form="long">C1</value>
+            <value form="short">C1</value>
+            <value form="image">jr://images/Impatient.png</value>
+          </text>    
+          <text id="in_control">
+            <value form="long">C2</value>
+            <value form="short">C2</value>
+            <value form="image">jr://images/In_Control.png</value>
+          </text>
+          <text id="bored">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Bored.png</value>
+          </text>
+          <text id="disgusted">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Disgusted.png</value>
+          </text>
+          <text id="reliability">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Reliability.png</value>
+          </text>
+          <text id="crowding">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Crowding.png</value>
+          </text>
+          <text id="cleanliness">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Cleanliness.png</value>
+          </text>
+          <text id="safety">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Safety.png</value>
+          </text>
+          <text id="pleasantness">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Pleasantness.png</value>
+          </text>
+          <text id="accuracy">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Accuracy.png</value>
+          </text>
+          <text id="weather">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Weather.png</value>
+          </text>
+          <text id="travel_time">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Travel_Time.png</value>
+          </text>
+          <text id="pleasantness_road">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Pleasantness_Road.png</value>
+          </text>
+          <text id="parking_bike">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Parking_Bike.png</value>
+          </text>
+          <text id="parking_car">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Parking_Car.png</value>
+          </text>
+          <text id="traffic">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Traffic.png</value>
+          </text>
+
+
+          <!-- define handles for image-labels for prompts-->
+          <text id="recent_trip">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Prompt_Top.png</value>
+          </text>                   
+          <text id="emotion1">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Prompt_B1.png</value>
+          </text>
+          <text id="emotion2">
+            <value form="long">C3</value>
+            <value form="short">C3</value> 
+            <value form="image">jr://images/Prompt_B2.png</value>
+          </text>
+          <text id="emotion3">
+            <value form="long">C3</value>
+            <value form="short">C3</value> 
+            <value form="image">jr://images/Prompt_B3.png</value>
+          </text>
+          <text id="emotion4">
+            <value form="long">C3</value>
+            <value form="short">C3</value> 
+            <value form="image">jr://images/Prompt_B4.png</value>
+          </text>  
+          <text id="satisfaction1">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Prompt_Sat1.png</value>
+          </text>
+          <text id="satisfaction2">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Prompt_Sat2.png</value>
+          </text>
+          <text id="satisfaction3">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Prompt_Sat3.png</value>
+          </text>
+          <text id="satisfaction4">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Prompt_Sat4.png</value>
+          </text>
+          <text id="datetime1">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Prompt_Datetime1.png</value>
+          </text>
+          <text id="datetime2">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Prompt_Datetime2.png</value>
+          </text>     
+          <text id="nextbus">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Prompt_NextBus.png</value>
+          </text>
+          <text id="feedback">
+            <value form="long">C3</value>
+            <value form="short">C3</value>
+            <value form="image">jr://images/Prompt_Feedback.png</value>
+          </text>
+
+
+        </translation>
+      </itext>
+
+
+      <!-- instance declaration -->
+      <instance>     
+
+        <NewWidgets id="AllModes_1_3">
+
+          <!-- declare variables for holding answer values -->
+          <!-- Notatoin: Bx_x refers to Branch_x, Question_x -->
+          <!-- L_Bx_x is a dummy variable to hold the image label for Bx_x -->
+
+          <!-- First page prompt, currently on a trip right now? -->
+          <trip/>
+          <L_trip/>
+
+          <!-- Emotion branch for "currently on a Muni trip" -->
+          <group_B1> 
+            <P_B1/>   <!-- declare top level prompt dummy variables -->          
+            <L_B1_1/> 
+            <q_B1_1/>
+            <L_B1_2/>
+            <q_B1_2/>
+            <L_B1_3/> 
+            <q_B1_3/>
+            <L_B1_4/>
+            <q_B1_4/>
+            <L_B1_5/>
+            <q_B1_5/>
+            <L_B1_6/> 
+            <q_B1_6/>
+            <L_B1_7/>
+            <q_B1_7/>
+          </group_B1>
+
+          <!-- Emotion branch for "most recent trip was on Muni" -->
+          <group_B2> 
+            <P_B2/>
+            <L_B2_1/> 
+            <q_B2_1/>
+            <L_B2_2/>
+            <q_B2_2/>
+            <L_B2_3/> 
+            <q_B2_3/>
+            <L_B2_4/>
+            <q_B2_4/>
+            <L_B2_5/>
+            <q_B2_5/>
+            <L_B2_6/> 
+            <q_B2_6/>
+            <L_B2_7/>
+            <q_B2_7/>
+          </group_B2>
+
+          <!-- Emotion branch for "most recent trip was by  car" -->
+          <group_B3> 
+            <P_B3/>
+            <L_B3_1/> 
+            <q_B3_1/>
+            <L_B3_2/>
+            <q_B3_2/>
+            <L_B3_3/> 
+            <q_B3_3/>
+            <L_B3_4/>
+            <q_B3_4/>
+            <L_B3_5/>
+            <q_B3_5/>
+            <L_B3_6/> 
+            <q_B3_6/>
+            <L_B3_7/>
+            <q_B3_7/>
+          </group_B3>
+
+          <!-- Emotion branch for "most recent trip was by bike" -->
+          <group_B4> 
+            <P_B4/>
+            <L_B4_1/> 
+            <q_B4_1/>
+            <L_B4_2/>
+            <q_B4_2/>
+            <L_B4_3/> 
+            <q_B4_3/>
+            <L_B4_4/>
+            <q_B4_4/>
+            <L_B4_5/>
+            <q_B4_5/>
+            <L_B4_6/> 
+            <q_B4_6/>
+            <L_B4_7/>
+            <q_B4_7/>
+          </group_B4>
+
+          <!-- Satisfaction group 1, currently on Muni trip -->
+          <group_Sat1>
+            <P_Sat1/>
+            <L_Sat1_1/>
+            <q_Sat1_1/>
+            <L_Sat1_2/>
+            <q_Sat1_2/>
+            <L_Sat1_3/>
+            <q_Sat1_3/>
+            <L_Sat1_4/>
+            <q_Sat1_4/>
+            <L_Sat1_5/>
+            <q_Sat1_5/>
+          </group_Sat1>
+
+          <!-- Satisfaction group 2, "most recent trip by Muni" -->
+          <group_Sat2>
+            <P_Sat2/>
+            <L_Sat2_1/>
+            <q_Sat2_1/>
+            <L_Sat2_2/>
+            <q_Sat2_2/>
+            <L_Sat2_3/>
+            <q_Sat2_3/>
+            <L_Sat2_4/>
+            <q_Sat2_4/>
+            <L_Sat2_5/>
+            <q_Sat2_5/>
+          </group_Sat2>
+
+          <!-- Satisfaction group 3, "most recent trip by car" -->
+          <group_Sat3>
+            <P_Sat3/>
+            <L_Sat3_1/>
+            <q_Sat3_1/>
+            <L_Sat3_2/>
+            <q_Sat3_2/>
+            <L_Sat3_3/>
+            <q_Sat3_3/>
+            <L_Sat3_4/>
+            <q_Sat3_4/>
+            <L_Sat3_5/>
+            <q_Sat3_5/>
+          </group_Sat3>
+
+          <!-- Satisfaction group 2, "most recent trip by bike" -->
+          <group_Sat4>
+            <P_Sat4/>
+            <L_Sat4_1/>
+            <q_Sat4_1/>
+            <L_Sat4_2/>
+            <q_Sat4_2/>
+            <L_Sat4_3/>
+            <q_Sat4_3/>
+            <L_Sat4_4/>
+            <q_Sat4_4/>
+            <L_Sat4_5/>
+            <q_Sat4_5/>
+            <L_Sat4_6/>
+            <q_Sat4_6/>
+          </group_Sat4>
+
+          <!-- Datetime group 1, currently on a trip -->
+          <group_datetime1>            
+            <L_datetime1_2/>
+            <q_datetime1_2/>
+            <L_datetime1_3/>
+            <q_datetime1_3/>
+          </group_datetime1>
+
+          <!-- Datetime group 2, recently took a trip -->
+          <group_datetime2>
+            <P_datetime2/>            
+            <q_datetime2_1/>
+            <L_datetime2_2/>
+            <q_datetime2_2/>
+            <L_datetime2_3/>
+            <q_datetime2_3/>
+          </group_datetime2>
+
+          <!-- Feedback group -->
+          <group_feedback>
+            <L_feedback1/>
+            <q_feedback1/>
+            <q_feedback_text/>            
+          </group_feedback>
+
+
+          <!--meta data-->
+          <meta>
+            <start_time/>
+            <end_time/>
+            <IMEI/>
+            <IMSI/>
+            <Phone/>
+            <User/>
+          </meta>
+
+        </NewWidgets>
+
+      </instance>
+
+      <!-- Binding-->
+
+      <!-- meta data-->
+      <bind nodeset="/NewWidgets/meta/start_time" type="dateTime" jr:preload="timestamp" jr:preloadParams="start"/>
+      <bind nodeset="/NewWidgets/meta/end_time" type="dateTime" jr:preload="timestamp"  jr:preloadParams="end"/>
+      <bind nodeset="/NewWidgets/meta/IMEI" type="string" jr:preload="property" jr:preloadParams="uri:deviceid"/>
+      <bind nodeset="/NewWidgets/meta/IMSI" type="string" jr:preload="property" jr:preloadParams="uri:subscriberid"/>
+      <bind nodeset="/NewWidgets/meta/Phone" type="string" jr:preload="property" jr:preloadParams="uri:phonenumber"/>
+      <bind nodeset="/NewWidgets/meta/User" type="string" jr:preload="property" jr:preloadParams="uri:username"/>
+
+      <!-- Branching bindings -->
+      <bind nodeset="/NewWidgets/group_B1" relevant="/NewWidgets/trip = 1"/> 
+      <bind nodeset="/NewWidgets/group_B2" relevant="/NewWidgets/trip = 2"/>
+      <bind nodeset="/NewWidgets/group_B3" relevant="/NewWidgets/trip = 3"/> 
+      <bind nodeset="/NewWidgets/group_B4" relevant="/NewWidgets/trip = 4"/> 
+      <bind nodeset="/NewWidgets/group_Sat1" relevant="/NewWidgets/trip = 1"/> 
+      <bind nodeset="/NewWidgets/group_Sat2" relevant="/NewWidgets/trip = 2"/> 
+      <bind nodeset="/NewWidgets/group_Sat3" relevant="/NewWidgets/trip = 3"/> 
+      <bind nodeset="/NewWidgets/group_Sat4" relevant="/NewWidgets/trip = 4"/> 
+      <bind nodeset="/NewWidgets/group_datetime1" relevant="/NewWidgets/trip = 1"/> 
+      <bind nodeset="/NewWidgets/group_datetime2" relevant="/NewWidgets/trip = 2"/> 
+      <bind nodeset="/NewWidgets/group_feedback" relevant="not(/NewWidgets/trip = 0)"/> 
+      <bind nodeset="/NewWidgets/group_feedback/q_feedback_text" type="string" relevant="/NewWidgets/group_feedback/q_feedback1 = 1"/> 
+
+
+      <!-- bind data types -->      
+      <bind nodeset="/NewWidgets/group_datetime2/q_datetime2_1" type="time"/>
+      <bind nodeset="/NewWidgets/group_B1/L_B1_1" readonly="true()" type="select1"/> <!-- readonly doesn't stop icons from being highlighted when selected-->
+      <bind nodeset="/NewWidgets/group_B1/q_B1_1" type="select1"/>
+      <bind nodeset="/NewWidgets/group_B2/L_B2_1" readonly="true()" type="select1"/> <!-- readonly doesn't stop icons from being highlighted when selected-->
+      <bind nodeset="/NewWidgets/group_B2/q_B2_1" type="select1"/>
+      
+      <!-- force an answer-->
+      <bind nodeset="/NewWidgets/trip" required="true()"/>
+      
+      <!-- restricts input length to 255 characters -->
+       <bind nodeset="/NewWidgets/group_feedback/q_feedback_text" type="string" constraint="string-length(.) &gt;= 0 and string-length(.) &lt;= 255"/> 
+      
+    </model>
+  </h:head>
+
+  <!-- create the body-->
+
+  <h:body>
+    <!-- First page, are you on a trip right now? -->
+
+    <!-- Prompt -->
+    <group appearance="field-list">
+      <select1 appearance="compact-1" ref="/NewWidgets/L_trip">
+        <label></label>
+        <item>
+          <label ref="jr:itext('recent_trip')"/>
+          <value>c1</value>
+        </item>         
+      </select1> 
+
+      <!-- questions -->
+      <select1 ref="/NewWidgets/trip">
+        <label></label>
+
+        <item>
+          <label>No.</label>
+          <value>0</value>
+        </item>
+
+        <item>
+          <label>Yes, I am on a Muni trip right now.</label>
+          <value>1</value>
+        </item>
+
+        <item>
+          <label>Yes, my most recent trip was on Muni.</label>
+          <value>2</value>
+        </item>
+
+        <item>
+          <label>Yes, my most recent trip was by car.</label>
+          <value>3</value>
+        </item>
+
+        <item>
+          <label>Yes, my most recent trip was by bike.</label>
+          <value>4</value>
+        </item>
+
+      </select1>
+    </group>
+
+    <!-- create first Emotion  group, "currently on Muni trip" -->
+    <group ref="/NewWidgets/group_B1" appearance="field-list">
+
+      <!-- Prompt for branch B1: feelings about current trip -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B1/P_B1">
+        <label></label>
+        <item>
+          <label ref="jr:itext('emotion1')"/>
+          <value>c1</value>
+        </item>         
+      </select1>  
+
+      <!-- Question B1_1 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B1/L_B1_1">
+        <label></label>
+        <item>
+          <label ref="jr:itext('pleased')"/>
+          <value>c1</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B1/q_B1_1">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B1_2 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B1/L_B1_2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('frustrated')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B1/q_B1_2">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B1_3 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B1/L_B1_3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('peaceful')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B1/q_B1_3">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B1_4 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B1/L_B1_4">
+        <label></label>
+        <item>
+          <label ref="jr:itext('impatient')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B1/q_B1_4">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B1_5 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B1/L_B1_5">
+        <label></label>
+        <item>
+          <label ref="jr:itext('in_control')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B1/q_B1_5">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B1_6 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B1/L_B1_6">
+        <label></label>
+        <item>
+          <label ref="jr:itext('bored')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B1/q_B1_6">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B1_7 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B1/L_B1_7">
+        <label></label>
+        <item>
+          <label ref="jr:itext('disgusted')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B1/q_B1_7">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+    </group>
+
+    <!-- create second Emotion group, "most recent trip by Muni" -->
+    <group ref="/NewWidgets/group_B2" appearance="field-list">
+
+      <!-- Prompt for branch B2: feelings about recent trip -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B2/P_B2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('emotion2')"/>
+          <value>c1</value>
+        </item>         
+      </select1>  
+
+      <!-- Question B2_1 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B2/L_B2_1">
+        <label></label>
+        <item>
+          <label ref="jr:itext('pleased')"/>
+          <value>c1</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B2/q_B2_1">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B2_2 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B2/L_B2_2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('frustrated')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B2/q_B2_2">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B2_3 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B2/L_B2_3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('peaceful')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B2/q_B2_3">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B2_4 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B2/L_B2_4">
+        <label></label>
+        <item>
+          <label ref="jr:itext('impatient')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B2/q_B2_4">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B2_5 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B2/L_B2_5">
+        <label></label>
+        <item>
+          <label ref="jr:itext('in_control')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B2/q_B2_5">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B2_6 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B2/L_B2_6">
+        <label></label>
+        <item>
+          <label ref="jr:itext('bored')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B2/q_B2_6">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B2_7 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B2/L_B2_7">
+        <label></label>
+        <item>
+          <label ref="jr:itext('disgusted')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B2/q_B2_7">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+    </group>
+
+    <!-- create third Emotion group, "most recent trip by car." -->
+    <group ref="/NewWidgets/group_B3" appearance="field-list">
+
+      <!-- Prompt for branch B3: feelings about recent trip -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B3/P_B3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('emotion3')"/>
+          <value>c1</value>
+        </item>         
+      </select1>  
+
+      <!-- Question B3_1 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B3/L_B3_1">
+        <label></label>
+        <item>
+          <label ref="jr:itext('pleased')"/>
+          <value>c1</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B3/q_B3_1">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B3_2 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B3/L_B3_2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('frustrated')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B3/q_B3_2">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B3_3 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B3/L_B3_3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('peaceful')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B3/q_B3_3">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B3_4 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B3/L_B3_4">
+        <label></label>
+        <item>
+          <label ref="jr:itext('impatient')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B3/q_B3_4">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B3_5 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B3/L_B3_5">
+        <label></label>
+        <item>
+          <label ref="jr:itext('in_control')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B3/q_B3_5">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B3_6 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B3/L_B3_6">
+        <label></label>
+        <item>
+          <label ref="jr:itext('bored')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B3/q_B3_6">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B3_7 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B3/L_B3_7">
+        <label></label>
+        <item>
+          <label ref="jr:itext('disgusted')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B3/q_B3_7">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+    </group>
+
+    <!-- create fourth  Emotion group, "most recent trip by bike" -->
+    <group ref="/NewWidgets/group_B4" appearance="field-list">
+
+      <!-- Prompt for branch B4: feelings about recent trip -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B4/P_B4">
+        <label></label>
+        <item>
+          <label ref="jr:itext('emotion4')"/>
+          <value>c1</value>
+        </item>         
+      </select1>  
+
+      <!-- Question B4_1 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B4/L_B4_1">
+        <label></label>
+        <item>
+          <label ref="jr:itext('pleased')"/>
+          <value>c1</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B4/q_B4_1">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B4_2 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B4/L_B4_2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('frustrated')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B4/q_B4_2">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B4_3 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B4/L_B4_3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('peaceful')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B4/q_B4_3">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B4_4 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B4/L_B4_4">
+        <label></label>
+        <item>
+          <label ref="jr:itext('impatient')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B4/q_B4_4">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B4_5 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B4/L_B4_5">
+        <label></label>
+        <item>
+          <label ref="jr:itext('in_control')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B4/q_B4_5">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B4_6 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B4/L_B4_6">
+        <label></label>
+        <item>
+          <label ref="jr:itext('bored')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B4/q_B4_6">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+
+      <!-- Question B4_7 -->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_B4/L_B4_7">
+        <label></label>
+        <item>
+          <label ref="jr:itext('disgusted')"/>
+          <value>c2</value>
+        </item>         
+      </select1>    
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_B4/q_B4_7">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+    </group>
+
+    <!-- create Satisfaction1 group, "currently on Muni trip"-->
+    <group ref="/NewWidgets/group_Sat1" appearance="field-list">
+
+      <!-- Prompt for Satisfaction group-->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat1/P_Sat1">
+        <label></label>
+        <item>
+          <label ref="jr:itext('satisfaction1')"/>
+          <value>c1</value>
+        </item>         
+      </select1>  
+
+      <!-- Question Sat1_1-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat1/L_Sat1_1">
+        <label></label>
+        <item>
+          <label ref="jr:itext('reliability')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat1/q_Sat1_1">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat1_2-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat1/L_Sat1_2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('crowding')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat1/q_Sat1_2">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat1_3-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat1/L_Sat1_3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('cleanliness')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat1/q_Sat1_3">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat1_4-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat1/L_Sat1_4">
+        <label></label>
+        <item>
+          <label ref="jr:itext('safety')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat1/q_Sat1_4">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat1_5-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat1/L_Sat1_5">
+        <label></label>
+        <item>
+          <label ref="jr:itext('pleasantness')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat1/q_Sat1_5">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+    </group>
+
+    <!-- create Satisfaction2 group, "most recent trip by Muni"-->
+    <group ref="/NewWidgets/group_Sat2" appearance="field-list">
+
+      <!-- Prompt for Satisfaction group-->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat2/P_Sat2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('satisfaction2')"/>
+          <value>c1</value>
+        </item>         
+      </select1>  
+
+      <!-- Question Sat2_1-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat2/L_Sat2_1">
+        <label></label>
+        <item>
+          <label ref="jr:itext('reliability')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat2/q_Sat2_1">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat2_2-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat2/L_Sat2_2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('crowding')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat2/q_Sat2_2">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat2_3-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat2/L_Sat2_3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('cleanliness')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat2/q_Sat2_3">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat2_4-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat2/L_Sat2_4">
+        <label></label>
+        <item>
+          <label ref="jr:itext('safety')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat2/q_Sat2_4">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat2_5-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat2/L_Sat2_5">
+        <label></label>
+        <item>
+          <label ref="jr:itext('pleasantness')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat2/q_Sat2_5">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+    </group>
+
+    <!-- create Satisfaction3 group, "most recent trip by car."-->
+    <group ref="/NewWidgets/group_Sat3" appearance="field-list">
+
+      <!-- Prompt for Satisfaction group-->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat3/P_Sat3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('satisfaction3')"/>
+          <value>c1</value>
+        </item>         
+      </select1>  
+
+      <!-- Question Sat3_1-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat3/L_Sat3_1">
+        <label></label>
+        <item>
+          <label ref="jr:itext('traffic')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat3/q_Sat3_1">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat3_2-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat3/L_Sat3_2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('parking_car')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat3/q_Sat3_2">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat3_3-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat3/L_Sat3_3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('pleasantness_road')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat3/q_Sat3_3">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat3_4-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat3/L_Sat3_4">
+        <label></label>
+        <item>
+          <label ref="jr:itext('safety')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat3/q_Sat3_4">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat3_5-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat3/L_Sat3_5">
+        <label></label>
+        <item>
+          <label ref="jr:itext('travel_time')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat3/q_Sat3_5">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+    </group>
+
+    <!-- create Satisfaction4 group, "most recent trip by bike"-->
+    <group ref="/NewWidgets/group_Sat4" appearance="field-list">
+
+      <!-- Prompt for Satisfaction group-->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat4/P_Sat4">
+        <label></label>
+        <item>
+          <label ref="jr:itext('satisfaction4')"/>
+          <value>c1</value>
+        </item>         
+      </select1>  
+
+      <!-- Question Sat4_1-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat4/L_Sat4_1">
+        <label></label>
+        <item>
+          <label ref="jr:itext('traffic')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat4/q_Sat4_1">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat4_2-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat4/L_Sat4_2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('parking_bike')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat4/q_Sat4_2">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat4_3-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat4/L_Sat4_3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('pleasantness_road')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat4/q_Sat4_3">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat4_4-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat4/L_Sat4_4">
+        <label></label>
+        <item>
+          <label ref="jr:itext('safety')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat4/q_Sat4_4">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat4_5-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat4/L_Sat4_5">
+        <label></label>
+        <item>
+          <label ref="jr:itext('travel_time')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat4/q_Sat4_5">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+      <!-- Question Sat4_6-->
+      <!-- create first dummy question for image label -->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_Sat4/L_Sat4_6">
+        <label></label>
+        <item>
+          <label ref="jr:itext('weather')"/>
+          <value>c1</value>
+        </item>         
+      </select1>
+      <!-- create no-label radio buttons to actually collect response -->
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_Sat4/q_Sat4_6">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1> 
+
+    </group>
+
+    <!-- create Datetime group 1, currently on trip, no time question, just NextBus -->
+    <group ref="/NewWidgets/group_datetime1" appearance="field-list">
+           
+
+      <!-- NextBus question-->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_datetime1/L_datetime1_2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('nextbus')"/>
+          <value>c1</value>
+        </item> 
+      </select1>      
+      <select1 appearance="compact-1" ref="/NewWidgets/group_datetime1/L_datetime1_3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('accuracy')"/>
+          <value>c1</value>
+        </item> 
+      </select1>
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_datetime1/q_datetime1_3">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+      <select ref="/NewWidgets/group_datetime1/q_datetime1_2">
+        <label></label>
+        <item>
+          <label>I did not use NextBus.</label>
+          <value>0</value>
+        </item>
+      </select>
+
+
+    </group>
+
+    <!-- create Datetime group 2, recently took a trip -->
+    <group ref="/NewWidgets/group_datetime2" appearance="field-list">
+
+      
+      <!-- NextBus question-->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_datetime2/L_datetime2_2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('nextbus')"/>
+          <value>c1</value>
+        </item> 
+      </select1>    
+      <select1 appearance="compact-1" ref="/NewWidgets/group_datetime2/L_datetime2_3">
+        <label></label>
+        <item>
+          <label ref="jr:itext('accuracy')"/>
+          <value>c1</value>
+        </item> 
+      </select1>
+      <select1 appearance="list-nolabel" ref="/NewWidgets/group_datetime2/q_datetime2_3">
+        <label/>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+        <item>
+          <label></label>
+          <value>1</value>
+        </item>
+        <item>
+          <label></label>
+          <value>2</value>
+        </item>
+        <item>
+          <label></label>
+          <value>3</value>
+        </item>
+        <item>
+          <label></label>
+          <value>4</value>
+        </item>
+      </select1>
+      <select ref="/NewWidgets/group_datetime2/q_datetime2_2">
+        <label>No, I did not use NextBus.</label>
+        <item>
+          <label></label>
+          <value>0</value>
+        </item>
+      </select>
+      <!-- prompt for Datetime2-->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_datetime2/P_datetime2">
+        <label></label>
+        <item>
+          <label ref="jr:itext('datetime2')"/>
+          <value>c1</value>
+        </item>         
+      </select1>  
+      <input ref="/NewWidgets/group_datetime2/q_datetime2_1">
+        <label></label>
+      </input>
+
+    </group>
+
+    <!--create Feedback prompt group-->
+    <group ref="/NewWidgets/group_feedback" appearance="field-list">
+
+      <!-- Prompt for feedback-->
+      <select1 appearance="compact-1" ref="/NewWidgets/group_feedback/L_feedback1">
+        <label></label>
+        <item>
+          <label ref="jr:itext('feedback')"/>
+          <value>c1</value>
+        </item>         
+      </select1> 
+
+      <select1 ref="/NewWidgets/group_feedback/q_feedback1">
+        <label></label>
+        <item>
+          <label>No, exit the survey.</label>
+          <value>0</value>
+        </item>
+        <item>
+          <label>Yes.</label>
+          <value>1</value>
+        </item>        
+      </select1>                
+    </group>
+
+    <!-- feedback, typed text-->
+    <input ref="/NewWidgets/group_feedback/q_feedback_text">
+      <label>Please write your answer below.</label>
+      <hint>Please restrict your answer to 255 characters or less. Swipe when you are finished.</hint>
+    </input>
+
+
+  </h:body>
+</h:html>
